@@ -1,0 +1,11 @@
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.formInstaller.resources
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.formSettings.resources
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.csproj.GenerateResource.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.Properties.Resources.resources
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\CaptionModSettings.exe.config
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\CaptionModSettings.exe
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\CaptionModSettings.pdb
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.exe
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.pdb

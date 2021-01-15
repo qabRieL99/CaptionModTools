@@ -1,0 +1,11 @@
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.Properties.Resources.resources
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.csproj.GenerateResource.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\HalfLifeInstaller.exe.config
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\HalfLifeInstaller.exe
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\HalfLifeInstaller.pdb
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.exe
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.pdb
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.formSettings.resources
+C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\HalfLifeInstaller.formInstaller.resources
