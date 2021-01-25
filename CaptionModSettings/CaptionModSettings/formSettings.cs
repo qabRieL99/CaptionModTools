@@ -41,7 +41,7 @@ namespace HalfLifeInstaller
         void StartGame()
         {
             ProcessStartInfo processinfo = new ProcessStartInfo();
-            processinfo.Arguments = "-game " + ArgumentToRun;
+            processinfo.Arguments = "-game " + ArgumentToRun + " -insecure";
             processinfo.FileName = HalfLife + "metahook.exe";
             processinfo.WorkingDirectory = Path.GetDirectoryName(processinfo.FileName);
 
