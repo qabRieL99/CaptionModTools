@@ -129,6 +129,33 @@ namespace HalfLifeInstaller
             File.WriteAllLines(HalfLife + "//" + ArgumentToRun + "//captionmod//SubtitlePanel.res", ayarlarPanel);
             ayarlarPanel = null;
         }
+		void FindLocation()
+        {
+            if (cmbGames.SelectedItem.ToString() == "Half-Life")
+            {
+                System.Diagnostics.Process.Start(HalfLife + "valve");
+            }
+
+            if (cmbGames.SelectedItem.ToString() == "Half-Life: Opposing Force")
+            {
+                System.Diagnostics.Process.Start(HalfLife + "gearbox");
+            }
+
+            if (cmbGames.SelectedItem.ToString() == "Half-Life: Blue Shift")
+            {
+                System.Diagnostics.Process.Start(HalfLife + "bshift");
+            }
+
+            if (cmbGames.SelectedItem.ToString() == "Half-Life: Decay")
+            {
+                System.Diagnostics.Process.Start(HalfLife + "decay");
+            }
+
+            if (cmbGames.SelectedItem.ToString() == "Half-Life: Uplink")
+            {
+                System.Diagnostics.Process.Start(HalfLife + "hlulsl");
+            }
+        }
         #endregion
 
         #region Beautifiers
