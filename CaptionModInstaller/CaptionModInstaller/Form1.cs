@@ -15,69 +15,50 @@ namespace CaptionModInstaller
             InitializeComponent();
         }
 
-        string HalfLife;
+        string mainDirectory;
         string desktopPath = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
 
         void FindPath()
         {
             try
             {
-                string steamPath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\Valve\\Steam", "SteamPath", null) as string;
-                string result = SeekDirectory(steamPath);
-                if (!string.IsNullOrWhiteSpace(result))
+                RegistryKey HLKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 70", false);
+                RegistryKey BSKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 130", false);
+                RegistryKey OFKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 50", false);
+
+                if (HLKey == null)
                 {
-                    HalfLife = result.Substring(0, result.Length - 6);
-                    textBox1.Text = HalfLife;
+                    if (BSKey == null)
+                    {
+                        if (OFKey == null)
+                        {
+                        }
+                        else
+                        {
+                            RegistryKey OFKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                            mainDirectory = OFKey2.OpenSubKey("Steam App 50").GetValue("InstallLocation").ToString();
+                        }
+                    }
+                    else
+                    {
+                        RegistryKey BSKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                        mainDirectory = BSKey2.OpenSubKey("Steam App 130").GetValue("InstallLocation").ToString();
+                    }
                 }
+                else
+                {
+                    RegistryKey HLKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                    mainDirectory = HLKey2.OpenSubKey("Steam App 70").GetValue("InstallLocation").ToString();
+                }
+                    textBox1.Text = mainDirectory;
             }
             catch
             {
             }
         }
 
-        #region Beautifiers
-        private static string SeekDirectory(string steamDirectory)
-        {
-            if (steamDirectory == null || !Directory.Exists(steamDirectory))
-            {
-                return null;
-            }
-
-            string path = Path.Combine(steamDirectory, "SteamApps", "Common", "Half-Life", "hl.exe");
-            if (File.Exists(path))
-            {
-                path = GetProperFilePathCapitalization(path);
-                if (path.Length >= 2 && path[1] == ':')
-                {
-                    path = char.ToUpper(path[0]) + path.Substring(1);
-                    return path;
-                }
-            }
-            return null;
-        }
-        private static string GetProperFilePathCapitalization(string filename)
-        {
-            FileInfo fileInfo = new FileInfo(filename);
-            DirectoryInfo dirInfo = fileInfo.Directory;
-            return Path.Combine(GetProperDirectoryCapitalization(dirInfo),
-                                dirInfo.GetFiles(fileInfo.Name)[0].Name);
-        }
-        private static string GetProperDirectoryCapitalization(DirectoryInfo dirInfo)
-        {
-            DirectoryInfo parentDirInfo = dirInfo.Parent;
-            if (null == parentDirInfo)
-                return dirInfo.Name;
-            return Path.Combine(GetProperDirectoryCapitalization(parentDirInfo),
-                                parentDirInfo.GetDirectories(dirInfo.Name)[0].Name);
-        }
-        #endregion
-
         private void button1_Click(object sender, EventArgs e)
         {
-            //FastZip fastZip = new FastZip();
-            //string fileFilter = null;
-            //fastZip.ExtractZip(HalfLife + "HalfLife.zip", HalfLife, fileFilter);
-
             if (checkBox1.Checked == false && checkBox2.Checked == false && checkBox3.Checked == false && checkBox4.Checked == false && checkBox5.Checked == false)
             {
                 MessageBox.Show("Hiçbir oyun seçilmedi!", "Oyun Seçilmedi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -86,42 +67,42 @@ namespace CaptionModInstaller
             {
                 if (checkBox1.Checked)
                 {
-                    if (File.Exists(HalfLife + "metahook.exe")) File.Delete(HalfLife + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
-                    File.WriteAllBytes(HalfLife + "HalfLife.zip", CaptionModInstaller.Properties.Resources.HalfLife);
-                    ZipFile.ExtractToDirectory(HalfLife + "HalfLife.zip", HalfLife);
-                    File.Delete(HalfLife + "HalfLife.zip");
+                    if (File.Exists(mainDirectory + "metahook.exe")) File.Delete(mainDirectory + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
+                    File.WriteAllBytes(mainDirectory + "HalfLife.zip", CaptionModInstaller.Properties.Resources.HalfLife);
+                    ZipFile.ExtractToDirectory(mainDirectory + "HalfLife.zip", mainDirectory);
+                    File.Delete(mainDirectory + "HalfLife.zip");
                 }
 
                 if (checkBox2.Checked)
                 {
-                    if (File.Exists(HalfLife + "metahook.exe")) File.Delete(HalfLife + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
-                    File.WriteAllBytes(HalfLife + "BlueShift.zip", CaptionModInstaller.Properties.Resources.BlueShift);
-                    ZipFile.ExtractToDirectory(HalfLife + "BlueShift.zip", HalfLife);
-                    File.Delete(HalfLife + "BlueShift.zip");
+                    if (File.Exists(mainDirectory + "metahook.exe")) File.Delete(mainDirectory + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
+                    File.WriteAllBytes(mainDirectory + "BlueShift.zip", CaptionModInstaller.Properties.Resources.BlueShift);
+                    ZipFile.ExtractToDirectory(mainDirectory + "BlueShift.zip", mainDirectory);
+                    File.Delete(mainDirectory + "BlueShift.zip");
                 }
 
                 if (checkBox3.Checked)
                 {
-                    if (File.Exists(HalfLife + "metahook.exe")) File.Delete(HalfLife + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
-                    File.WriteAllBytes(HalfLife + "OpposingForce.zip", CaptionModInstaller.Properties.Resources.OpposingForce);
-                    ZipFile.ExtractToDirectory(HalfLife + "OpposingForce.zip", HalfLife);
-                    File.Delete(HalfLife + "OpposingForce.zip");
+                    if (File.Exists(mainDirectory + "metahook.exe")) File.Delete(mainDirectory + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
+                    File.WriteAllBytes(mainDirectory + "OpposingForce.zip", CaptionModInstaller.Properties.Resources.OpposingForce);
+                    ZipFile.ExtractToDirectory(mainDirectory + "OpposingForce.zip", mainDirectory);
+                    File.Delete(mainDirectory + "OpposingForce.zip");
                 }
 
                 if (checkBox4.Checked)
                 {
-                    if (File.Exists(HalfLife + "metahook.exe")) File.Delete(HalfLife + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
-                    File.WriteAllBytes(HalfLife + "Decay.zip", CaptionModInstaller.Properties.Resources.Decay);
-                    ZipFile.ExtractToDirectory(HalfLife + "Decay.zip", HalfLife);
-                    File.Delete(HalfLife + "Decay.zip");
+                    if (File.Exists(mainDirectory + "metahook.exe")) File.Delete(mainDirectory + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
+                    File.WriteAllBytes(mainDirectory + "Decay.zip", CaptionModInstaller.Properties.Resources.Decay);
+                    ZipFile.ExtractToDirectory(mainDirectory + "Decay.zip", mainDirectory);
+                    File.Delete(mainDirectory + "Decay.zip");
                 }
 
                 if (checkBox5.Checked)
                 {
-                    if (File.Exists(HalfLife + "metahook.exe")) File.Delete(HalfLife + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
-                    File.WriteAllBytes(HalfLife + "Uplink.zip", CaptionModInstaller.Properties.Resources.Uplink);
-                    ZipFile.ExtractToDirectory(HalfLife + "Uplink.zip", HalfLife);
-                    File.Delete(HalfLife + "Uplink.zip");
+                    if (File.Exists(mainDirectory + "metahook.exe")) File.Delete(mainDirectory + "metahook.exe");  // Delete the metahook application if it already exists, we're going to install it anyways.
+                    File.WriteAllBytes(mainDirectory + "Uplink.zip", CaptionModInstaller.Properties.Resources.Uplink);
+                    ZipFile.ExtractToDirectory(mainDirectory + "Uplink.zip", mainDirectory);
+                    File.Delete(mainDirectory + "Uplink.zip");
                 }
                 if (File.Exists(desktopPath + "//CaptionMod Ayarları.exe")) File.Delete(desktopPath + "//CaptionMod Ayarları.exe");
                 File.WriteAllBytes(desktopPath +"//CaptionMod Ayarları.exe", CaptionModInstaller.Properties.Resources.CaptionModSettings);
@@ -135,10 +116,10 @@ namespace CaptionModInstaller
             FindPath();
 
             #region CheckHL
-            if (File.Exists(HalfLife + @"valve\cl_dlls\client.dll"))
+            if (File.Exists(mainDirectory + @"\valve\cl_dlls\client.dll"))
             {
                 checkBox1.Enabled = true;
-                if (File.Exists(HalfLife + @"valve\metahook\plugins\captionmod.dll"))
+                if (File.Exists(mainDirectory + @"\valve\metahook\plugins\captionmod.dll"))
                 {
                     checkBox1.Text += " [Yama Kurulu]";
                     checkBox1.Enabled = false;
@@ -149,10 +130,10 @@ namespace CaptionModInstaller
 
             #region CheckBS
             //BS
-            if (File.Exists(HalfLife + @"bshift\cl_dlls\client.dll"))
+            if (File.Exists(mainDirectory + @"\bshift\cl_dlls\client.dll"))
             {
                 checkBox2.Enabled = true;
-                if (File.Exists(HalfLife + @"bshift\metahook\plugins\captionmod.dll"))
+                if (File.Exists(mainDirectory + @"\bshift\metahook\plugins\captionmod.dll"))
                 {
                     checkBox2.Text += " [Yama Kurulu]";
                     checkBox2.Enabled = false;
@@ -163,10 +144,10 @@ namespace CaptionModInstaller
 
             #region CheckOF
             //OF
-            if (File.Exists(HalfLife + @"gearbox\cl_dlls\client.dll"))
+            if (File.Exists(mainDirectory + @"\gearbox\cl_dlls\client.dll"))
             {
                 checkBox3.Enabled = true;
-                if (File.Exists(HalfLife + @"gearbox\metahook\plugins\captionmod.dll"))
+                if (File.Exists(mainDirectory + @"\gearbox\metahook\plugins\captionmod.dll"))
                 {
                     checkBox3.Text += " [Yama Kurulu]";
                     checkBox3.Enabled = false;
@@ -177,10 +158,10 @@ namespace CaptionModInstaller
 
             #region CheckDC
             //DC
-            if (File.Exists(HalfLife + @"decay\cl_dlls\client.dll"))
+            if (File.Exists(mainDirectory + @"\decay\cl_dlls\client.dll"))
             {
                 checkBox4.Enabled = true;
-                if (File.Exists(HalfLife + @"decay\metahook\plugins\captionmod.dll"))
+                if (File.Exists(mainDirectory + @"\decay\metahook\plugins\captionmod.dll"))
                 {
                     checkBox4.Text += " [Yama Kurulu]";
                     checkBox4.Enabled = false;
@@ -191,10 +172,10 @@ namespace CaptionModInstaller
 
             #region CheckUL
             //HLU
-            if (Directory.Exists(HalfLife + @"hlulsl"))
+            if (Directory.Exists(mainDirectory + @"\hlulsl"))
             {
                 checkBox5.Enabled = true;
-                if (File.Exists(HalfLife + @"hlulsl\metahook\plugins\captionmod.dll"))
+                if (File.Exists(mainDirectory + @"hlulsl\metahook\plugins\captionmod.dll"))
                 {
                     checkBox5.Text += " [Yama Kurulu]";
                     checkBox5.Enabled = false;
@@ -202,7 +183,6 @@ namespace CaptionModInstaller
             }
             else checkBox5.Text += " [Oyun Bulunamadı]";
             #endregion;
-
         }
     }
 }

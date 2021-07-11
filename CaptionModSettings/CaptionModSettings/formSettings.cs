@@ -14,6 +14,7 @@ namespace HalfLifeInstaller
             InitializeComponent();
         }
         #region Variables
+        string mainDirectory;
         string FontName;
         float FontSize;
         string ArgumentToRun;
@@ -23,26 +24,52 @@ namespace HalfLifeInstaller
         #endregion
 
         #region Operations
+
         void FindPath()
         {
             try
             {
-                string steamPath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\Valve\\Steam", "SteamPath", null) as string;
-                string result = SeekDirectory(steamPath);
-                if (!string.IsNullOrWhiteSpace(result))
+                RegistryKey HLKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 70", false);
+                RegistryKey BSKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 130", false);
+                RegistryKey OFKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 50", false);
+
+                if (HLKey == null)
                 {
-                    HalfLife = result.Substring(0,result.Length-6);
+                    if (BSKey == null)
+                    {
+                        if (OFKey == null)
+                        {
+                        }
+                        else
+                        {
+                            RegistryKey OFKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                            mainDirectory = OFKey2.OpenSubKey("Steam App 50").GetValue("InstallLocation").ToString();
+                        }
+                    }
+                    else
+                    {
+                        RegistryKey BSKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                        mainDirectory = BSKey2.OpenSubKey("Steam App 130").GetValue("InstallLocation").ToString();
+                    }
                 }
+                else
+                {
+                    RegistryKey HLKey2 = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", false);
+                    mainDirectory = HLKey2.OpenSubKey("Steam App 70").GetValue("InstallLocation").ToString();
+                }
+                HalfLife = mainDirectory;
             }
             catch
             {
             }
         }
+
+
         void StartGame()
         {
             ProcessStartInfo processinfo = new ProcessStartInfo();
             processinfo.Arguments = "-game " + ArgumentToRun + " -insecure";
-            processinfo.FileName = HalfLife + "metahook.exe";
+            processinfo.FileName = HalfLife + @"\metahook.exe";
             processinfo.WorkingDirectory = Path.GetDirectoryName(processinfo.FileName);
 
             try
@@ -133,79 +160,43 @@ namespace HalfLifeInstaller
         {
             if (cmbGames.SelectedItem.ToString() == "Half-Life")
             {
-                System.Diagnostics.Process.Start(HalfLife + "valve");
+                System.Diagnostics.Process.Start(HalfLife + @"\valve");
             }
 
             if (cmbGames.SelectedItem.ToString() == "Half-Life: Opposing Force")
             {
-                System.Diagnostics.Process.Start(HalfLife + "gearbox");
+                System.Diagnostics.Process.Start(HalfLife + @"\gearbox");
             }
 
             if (cmbGames.SelectedItem.ToString() == "Half-Life: Blue Shift")
             {
-                System.Diagnostics.Process.Start(HalfLife + "bshift");
+                System.Diagnostics.Process.Start(HalfLife + @"\bshift");
             }
 
             if (cmbGames.SelectedItem.ToString() == "Half-Life: Decay")
             {
-                System.Diagnostics.Process.Start(HalfLife + "decay");
+                System.Diagnostics.Process.Start(HalfLife + @"\decay");
             }
 
             if (cmbGames.SelectedItem.ToString() == "Half-Life: Uplink")
             {
-                System.Diagnostics.Process.Start(HalfLife + "hlulsl");
+                System.Diagnostics.Process.Start(HalfLife + @"\hlulsl");
             }
         }
         #endregion
 
-        #region Beautifiers
-        private static string SeekDirectory(string steamDirectory)
-        {
-            if (steamDirectory == null || !Directory.Exists(steamDirectory))
-            {
-                return null;
-            }
-
-            string path = Path.Combine(steamDirectory, "SteamApps", "Common", "Half-Life", "hl.exe");
-            if (File.Exists(path))
-            {
-                path = GetProperFilePathCapitalization(path);
-                if (path.Length >= 2 && path[1] == ':')
-                {
-                    path = char.ToUpper(path[0]) + path.Substring(1);
-                    return path;
-                }
-            }
-            return null;
-        }
-        private static string GetProperFilePathCapitalization(string filename)
-        {
-            FileInfo fileInfo = new FileInfo(filename);
-            DirectoryInfo dirInfo = fileInfo.Directory;
-            return Path.Combine(GetProperDirectoryCapitalization(dirInfo),
-                                dirInfo.GetFiles(fileInfo.Name)[0].Name);
-        }
-        private static string GetProperDirectoryCapitalization(DirectoryInfo dirInfo)
-        {
-            DirectoryInfo parentDirInfo = dirInfo.Parent;
-            if (null == parentDirInfo)
-                return dirInfo.Name;
-            return Path.Combine(GetProperDirectoryCapitalization(parentDirInfo),
-                                parentDirInfo.GetDirectories(dirInfo.Name)[0].Name);
-        }
-        #endregion
 
         private void Form1_Load(object sender, EventArgs e)
         {
            FindPath();
 
             //Check if both the game and the CaptionMod is installed...
-            if (File.Exists(HalfLife + @"valve\cl_dlls\client.dll") && File.Exists(HalfLife +@"valve\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life");
-            if (File.Exists(HalfLife + @"gearbox\cl_dlls\client.dll") && File.Exists(HalfLife + @"gearbox\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Opposing Force");
-            if (File.Exists(HalfLife + @"bshift\cl_dlls\client.dll") && File.Exists(HalfLife + @"bshift\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Blue Shift");
-            if (File.Exists(HalfLife + @"decay\cl_dlls\client.dll") && File.Exists(HalfLife + @"decay\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Decay");
+            if (File.Exists(HalfLife + @"\valve\cl_dlls\client.dll") && File.Exists(HalfLife + @"\valve\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life");
+            if (File.Exists(HalfLife + @"\gearbox\cl_dlls\client.dll") && File.Exists(HalfLife + @"\gearbox\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Opposing Force");
+            if (File.Exists(HalfLife + @"\bshift\cl_dlls\client.dll") && File.Exists(HalfLife + @"\bshift\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Blue Shift");
+            if (File.Exists(HalfLife + @"\decay\cl_dlls\client.dll") && File.Exists(HalfLife + @"\decay\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Decay");
             //This is a mod.
-            if (File.Exists(HalfLife + @"hlulsl\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Uplink");
+            if (File.Exists(HalfLife + @"\hlulsl\metahook\plugins\captionmod.dll")) cmbGames.Items.Add("Half-Life: Uplink");
 
             //No games? Then quit.
             if (cmbGames.Items.Count == 0)
@@ -418,6 +409,11 @@ namespace HalfLifeInstaller
                     txtPreview.TextAlign = HorizontalAlignment.Center;
                     break;
             }
+        }
+
+        private void btnFindLocation_Click(object sender, EventArgs e)
+        {
+            FindLocation();
         }
     }
 }
