@@ -9,3 +9,13 @@ C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\Capti
 C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\bin\Debug\CaptionModSettings.pdb
 C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.exe
 C:\Users\Lenovo\source\repos\HalfLifeInstaller\HalfLifeInstaller\obj\Debug\CaptionModSettings.pdb
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\bin\Debug\CaptionModSettings.exe.config
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\bin\Debug\CaptionModSettings.exe
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\bin\Debug\CaptionModSettings.pdb
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\HalfLifeInstaller.formSettings.resources
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.Properties.Resources.resources
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.csproj.GenerateResource.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.exe
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModSettings\CaptionModSettings\obj\Debug\CaptionModSettings.pdb

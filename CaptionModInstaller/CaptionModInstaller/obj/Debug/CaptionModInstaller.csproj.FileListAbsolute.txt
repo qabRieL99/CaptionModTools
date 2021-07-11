@@ -1,0 +1,10 @@
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\bin\Debug\CaptionModInstaller.exe.config
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\bin\Debug\CaptionModInstaller.exe
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\bin\Debug\CaptionModInstaller.pdb
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.Form1.resources
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.Properties.Resources.resources
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.csproj.GenerateResource.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.exe
+C:\Users\Lenovo\Documents\GitHub\CaptionModTools\CaptionModInstaller\CaptionModInstaller\obj\Debug\CaptionModInstaller.pdb
